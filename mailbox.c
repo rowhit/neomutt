@@ -607,6 +607,9 @@ int mutt_parse_mailboxes(struct Buffer *buf, struct Buffer *s,
         {
           old_m->flags = MB_NORMAL;
           mutt_sb_notify_mailbox(old_m, true);
+          struct MailboxNode *mn = mutt_mem_calloc(1, sizeof(*mn));
+          mn->m = m;
+          STAILQ_INSERT_TAIL(&AllMailboxes, mn, entries);
         }
         else
         {
